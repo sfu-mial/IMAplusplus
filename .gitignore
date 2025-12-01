@@ -2,6 +2,9 @@
 __pycache__/
 *.py[codz]
 *$py.class
+dataset_creation/OLD_*.py
+multiannotator_analysis/z_*.py
+multiannotator_analysis/visualization_scripts/z_*.py
 
 # C extensions
 *.so
