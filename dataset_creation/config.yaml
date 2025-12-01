@@ -1,0 +1,40 @@
+# The images are either in jpg or JPG format depending on the source.
+orig_imgs_dirs:
+  jpg:
+    - "/local-scratch/localhome/kabhishe/WorkingDir/StyleSegDatasets/V1_Data/TRAIN/"
+    - "/local-scratch/localhome/kabhishe/WorkingDir/StyleSegDatasets/V1_Data/VALID/"
+    - "/local-scratch/localhome/kabhishe/WorkingDir/StyleSegDatasets/V1_Data/TEST/"
+  JPG:
+    - "/local-scratch/localhome/kabhishe/WorkingDir/StyleSegDatasets/V2_Data/TEST/"
+
+# The directory containing the original segmentations. These have the original
+# filenames, and so in `move_dataset.py`, we need to construct the path to the
+# segmentation file using the `orig_segs_dir` and the `filename` column in the
+# metadata file.
+orig_segs_dir: "/dev/shm/myramdisk/orig_ISIC_segmasks/"
+# orig_segs_dir: "/local-scratch/localhome/kabhishe/WorkingDir/orig_ISIC_segmasks/"
+
+raw_img_metadata_path: "./original_metadata_files/raw_ISIC_images_metadata.csv.gz"
+raw_seg_masks_metadata_path: "./original_metadata_files/raw_ISIC_segmasks_metadata.csv"
+
+exclude_mskObjectIDs:
+  # Although ISIC_0013456 has 2 segmentations, the following file is a blank
+  # segmentation, i.e., all pixels are 0.
+  - "5841e58a9fc3c156c3ef38a6"
+
+# dataset_name: "IMAplusplus"
+new_dataset_metadata_output_dir: "../output/metadata/"
+output_seg_masks_metadata_path: "IMAplusplus_seg_metadata.csv"
+output_img_metadata_path: "IMAplusplus_img_metadata.csv"
+
+verbose: true
+
+# target_data_dir: "/local-scratch/localhome/kabhishe/WorkingDir/IMAplusplus_dataset/"
+target_data_dir: "/dev/shm/myramdisk/IMAplusplus_dataset/"
+
+# If true, the images and masks are separated into two directories.
+separate_images_and_masks: true
+
+# # Resize images and masks.
+# resize_images: false
+# resize_images_size: 256

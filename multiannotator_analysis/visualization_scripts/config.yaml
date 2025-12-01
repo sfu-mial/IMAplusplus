@@ -1,0 +1,16 @@
+# dataset_name: "IMAplusplus"
+new_dataset_metadata_output_dir: "../../output/metadata/"
+output_seg_masks_metadata_path: "IMAplusplus_seg_metadata.csv"
+output_img_metadata_path: "IMAplusplus_img_metadata.csv"
+
+new_dataset_dir: "/dev/shm/myramdisk/IMAplusplus_dataset/"
+new_dataset_masks_dir: "/dev/shm/myramdisk/IMAplusplus_dataset/masks/"
+new_dataset_images_dir: "/dev/shm/myramdisk/IMAplusplus_dataset/images/"
+
+multiannotator_subset_metadata_path: "IMAplusplus_multiannotator_subset_seg_metadata.csv"
+
+all_pairwise_IAA_metrics_path: "IMAplusplus_multiannotator_subset_IAA_metrics.csv"
+
+image_level_metrics_path: "IMAplusplus_multiannotator_subset_image_level_metrics.csv"
+
+verbose: true
