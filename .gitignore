@@ -2,6 +2,7 @@
 __pycache__/
 *.py[codz]
 *$py.class
+dataset_creation/original_metadata_files/raw*
 dataset_creation/OLD_*.py
 multiannotator_analysis/z_*.py
 multiannotator_analysis/visualization_scripts/z_*.py
