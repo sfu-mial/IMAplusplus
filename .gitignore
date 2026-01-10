@@ -1,11 +1,16 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[codz]
-*$py.class
+# [KA] Manually added entries
 dataset_creation/original_metadata_files/raw*
 dataset_creation/OLD_*.py
 multiannotator_analysis/z_*.py
 multiannotator_analysis/visualization_scripts/z_*.py
+arXiv_paper.md
+zenodo_readme.txt
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
 
 # C extensions
 *.so
