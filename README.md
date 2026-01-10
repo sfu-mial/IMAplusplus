@@ -285,30 +285,34 @@ Distribution of number of segmentations per image and factor-wise counts (Annota
 
 If you use the IMA++ dataset in your research, please cite the following papers:
 
-Abhishek, K., Kawahara, J., Hamarneh, G. (2025). Segmentation Style Discovery: Application to Skin Lesion Images. In: Medical Image Computing and Computer-Assisted Intervention (MICCAI) ISIC Skin Image Analysis Workshop (MICCAI ISIC). MICCAI 2024. Lecture Notes in Computer Science, vol 15274, pages 24–34. Springer, Cham. https://doi.org/10.1007/978-3-031-77610-6_3
+- Abhishek, K., Kawahara, J., Hamarneh, G. (2025). IMA++: ISIC Archive Multi-Annotator Dermoscopic Skin Lesion Segmentation Dataset. arXiv preprint arXiv:2512.21472, pages 1–11. https://doi.org/10.48550/arXiv.2512.21472
 
-Abhishek, K., Kawahara, J., Hamarneh, G. (2025). What Can We Learn from Inter-Annotator Variability in Skin Lesion Segmentation?. In: Medical Image Computing and Computer-Assisted Intervention (MICCAI) ISIC Skin Image Analysis Workshop (MICCAI ISIC). MICCAI 2025. Lecture Notes in Computer Science, vol 16149, pages 23–33. Springer, Cham. https://doi.org/10.1007/978-3-032-05825-6_3
+- Abhishek, K., Kawahara, J., Hamarneh, G. (2025). What Can We Learn from Inter-Annotator Variability in Skin Lesion Segmentation?. In: Medical Image Computing and Computer-Assisted Intervention (MICCAI) ISIC Skin Image Analysis Workshop (MICCAI ISIC). MICCAI 2025. Lecture Notes in Computer Science, vol 16149, pages 23–33. Springer, Cham. https://doi.org/10.1007/978-3-032-05825-6_3
+
+- Abhishek, K., Kawahara, J., Hamarneh, G. (2025). Segmentation Style Discovery: Application to Skin Lesion Images. In: Medical Image Computing and Computer-Assisted Intervention (MICCAI) ISIC Skin Image Analysis Workshop (MICCAI ISIC). MICCAI 2024. Lecture Notes in Computer Science, vol 15274, pages 24–34. Springer, Cham. https://doi.org/10.1007/978-3-031-77610-6_3
+
+<details>
+<summary>Click to expand <b>BibTeX entries</b></summary>
 
 The BibTeX entries for these papers are:
 
 ```bibtex
-@InProceedings{abhishek2024segmentationstyle,
+@Article{abhishek2025imaplusplus,
     author = {Abhishek, Kumar and Kawahara, Jeremy and Hamarneh, Ghassan},
-    title = {Segmentation Style Discovery: Application to Skin Lesion Images},
-    booktitle = {Proceedings of the International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI) ISIC Skin Image Analysis Workshop},
-    pages = {24--34},
+    title = {IMA++: ISIC Archive Multi-Annotator Dermoscopic Skin Lesion Segmentation Dataset},
+    journal = {arXiv preprint arXiv:2512.21472},
     year = {2025},
-    doi = {https://doi.org/10.1007/978-3-031-77610-6_3},
-    url = {https://link.springer.com/chapter/10.1007/978-3-031-77610-6_3},
-    publisher = {Springer Nature Switzerland},
-    address = {Cham},
-    isbn = {9783031776106}
+    doi = {https://doi.org/10.48550/arXiv.2512.21472},
+    url = {https://arxiv.org/abs/2512.21472},
+    publisher = {arXiv},
+    pages = {1--11},
+
 }
 
-@InProceedings{abhishek2024variability,
+@InProceedings{abhishek2025what,
     author = {Abhishek, Kumar and Kawahara, Jeremy and Hamarneh, Ghassan},
     title = {What Can We Learn from Inter-Annotator Variability in Skin Lesion Segmentation?},
-    booktitle = {Proceedings of the International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI) ISIC Skin Image Analysis Workshop},
+    booktitle = {Proceedings of the International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI) ISIC Skin Image Analysis Workshop (MICCAI ISIC)},
     pages = {23--33},
     year = {2025},
     doi = {https://doi.org/10.1007/978-3-032-05825-6_3},
@@ -317,5 +321,19 @@ The BibTeX entries for these papers are:
     address = {Cham},
     isbn = {9783032058256}
 }
+
+@InProceedings{abhishek2025segmentation,
+    author = {Abhishek, Kumar and Kawahara, Jeremy and Hamarneh, Ghassan},
+    title = {Segmentation Style Discovery: Application to Skin Lesion Images},
+    booktitle = {Proceedings of the International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI) ISIC Skin Image Analysis Workshop (MICCAI ISIC)},
+    pages = {24--34},
+    year = {2025},
+    doi = {https://doi.org/10.1007/978-3-031-77610-6_3},
+    url = {https://link.springer.com/chapter/10.1007/978-3-031-77610-6_3},
+    publisher = {Springer Nature Switzerland},
+    address = {Cham},
+    isbn = {9783031776106}
+}
 ```
 
+</details>
