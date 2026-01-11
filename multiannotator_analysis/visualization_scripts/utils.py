@@ -8,12 +8,7 @@ import scipy.stats as stats
 import seaborn as sns
 from constants import METRIC_NAME_MAP
 from matplotlib import cm
-from matplotlib.colors import (
-    LinearSegmentedColormap,
-    ListedColormap,
-    LogNorm,
-    Normalize,
-)
+from matplotlib.colors import LinearSegmentedColormap, LogNorm, Normalize
 from omegaconf import OmegaConf
 
 
@@ -668,9 +663,9 @@ def generate_variability_heatmap_lower_triangle_only_pairs(
         cmap.set_bad("lightgray")
 
         # Masks
-        mask_upper_triangle = np.triu(
-            np.ones_like(metric_matrix, dtype=bool), k=1
-        )  # upper triangle mask
+        # mask_upper_triangle = np.triu(
+        #     np.ones_like(metric_matrix, dtype=bool), k=1
+        # )  # upper triangle mask
         masked_data = np.ma.array(
             metric_matrix.values, mask=np.isnan(metric_matrix.values)
         )  # NaNs masked for lightgray

@@ -1,24 +1,12 @@
-import json
-import os
 import sys
-from concurrent.futures import ProcessPoolExecutor, as_completed
 from datetime import datetime
-from itertools import combinations
 from pathlib import Path
-from typing import Iterable, Literal
 
 import pandas as pd
 from loguru import logger
 from omegaconf import OmegaConf
-from tqdm import tqdm
 
 sys.path.append("..")
-from utils.data import get_image_mask_pairs, load_mask
-from utils.metrics import (
-    compute_boundary_metrics,
-    compute_overlap_metrics,
-    summarize_metrics,
-)
 
 # Configure loguru to output ERROR level messages and above to the console.
 logger.remove()

@@ -1,16 +1,12 @@
 import sys
 from pathlib import Path
 
-import matplotlib.pyplot as plt
-import pandas as pd
-import seaborn as sns
 from omegaconf import OmegaConf
 
 # sys.path.append("../../")
 
 sys.path.append("..")
 from utils import (
-    generate_variability_heatmap,
     generate_variability_heatmap_lower_triangle_only_pairs,
     read_pairwise_IAA_metrics,
 )

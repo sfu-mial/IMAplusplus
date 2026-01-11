@@ -2,7 +2,6 @@ import sys
 from pathlib import Path
 
 import matplotlib.pyplot as plt
-import pandas as pd
 import seaborn as sns
 from omegaconf import OmegaConf
 
@@ -10,12 +9,8 @@ sys.path.append("..")
 from constants import IEEE_DATA_DESC, METRIC_NAME_MAP
 
 from utils import (
-    create_custom_colormap,
-    filter_annotators_metadata,
     filter_annotators_metrics,
-    read_multiannotator_subset_seg_masks_metadata,
     read_pairwise_IAA_metrics,
-    read_seg_masks_metadata,
 )
 
 VIS_OUTPUT_DIR = Path("../../output/visualizations/metrics/")
