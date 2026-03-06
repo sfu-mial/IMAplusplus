@@ -33,6 +33,27 @@ logger.add(
 )
 
 # -------------------------
+# Utility functions
+# -------------------------
+
+
+def filter_annotators_metrics(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Utility function to drop all rows that have metrics corresponding to
+    consensus labels: either majority voting (MV) or STAPLE (ST).
+
+    Same as `visualization_scripts.utils.filter_annotators_metrics`.
+    """
+    consensus_labels = ["MV", "ST"]
+    return df[
+        ~(
+            df["annotator1"].isin(consensus_labels)
+            | df["annotator2"].isin(consensus_labels)
+        )
+    ]
+
+
+# -------------------------
 # Parallel worker utilities
 # -------------------------
 
@@ -296,8 +317,12 @@ def main() -> None:
     metrics_df = compute_IAA_metrics(config, calc_mode="memory", num_workers=8)
     logger.info(f"Computed {len(metrics_df)} rows of IAA metrics.")
 
+    # Filter the metrics to only include rows where both annotators are not
+    # consensus labels.
+    metrics_df_annotators_only = filter_annotators_metrics(metrics_df)
+
     # Summarize the metrics.
-    summary_df = summarize_metrics(metrics_df)
+    summary_df = summarize_metrics(metrics_df_annotators_only)
 
     # Save the metrics.
     metrics_df.to_csv(
