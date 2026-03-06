@@ -129,47 +129,41 @@ def summarize_metrics(
     pd.DataFrame
         DataFrame containing the summarized metrics.
     """
-    summary_df = pd.DataFrame()
-
-    # Overlap metrics.
-    overlap_cols = ["dice_score", "jaccard_score"]
-    for metric in overlap_cols:
-        if metric in metrics_df.columns and pd.api.types.is_numeric_dtype(
-            metrics_df[metric]
-        ):
-            summary_df.loc["Mean", metric] = metrics_df[metric].mean()
-            summary_df.loc["Standard deviation", metric] = metrics_df[
-                metric
-            ].std()
-            summary_df.loc["Minimum", metric] = metrics_df[metric].min()
-            summary_df.loc["Maximum", metric] = metrics_df[metric].max()
-            summary_df.loc["Median", metric] = metrics_df[metric].median()
-            summary_df.loc["IQR", metric] = metrics_df[metric].quantile(
-                0.75
-            ) - metrics_df[metric].quantile(0.25)
-
-    # Boundary metrics.
-    boundary_cols = [
+    all_metric_cols = [
+        # Overlap metrics.
+        "dice_score",
+        "jaccard_score",
+        # Boundary metrics.
         "hd_score",
         "hd95_score",
         "assd_score",
+        # Normalized boundary metrics.
         "hd_score_normalized",
         "hd95_score_normalized",
         "assd_score_normalized",
     ]
-    for metric in boundary_cols:
-        if metric in metrics_df.columns and pd.api.types.is_numeric_dtype(
-            metrics_df[metric]
-        ):
-            summary_df.loc["Mean", metric] = metrics_df[metric].mean()
-            summary_df.loc["Standard deviation", metric] = metrics_df[
-                metric
-            ].std()
-            summary_df.loc["Minimum", metric] = metrics_df[metric].min()
-            summary_df.loc["Maximum", metric] = metrics_df[metric].max()
-            summary_df.loc["Median", metric] = metrics_df[metric].median()
-            summary_df.loc["IQR", metric] = metrics_df[metric].quantile(
-                0.75
-            ) - metrics_df[metric].quantile(0.25)
+
+    valid_cols = [
+        col
+        for col in all_metric_cols
+        if col in metrics_df.columns
+        and pd.api.types.is_numeric_dtype(metrics_df[col])
+    ]
+
+    if not valid_cols:
+        return pd.DataFrame()
+
+    subset = metrics_df[valid_cols]
+    summary_df = subset.agg(["mean", "std", "min", "max", "median"])
+    iqr_row = subset.quantile(0.75) - subset.quantile(0.25)
+    summary_df = pd.concat([summary_df, iqr_row.to_frame("iqr").T])
+    summary_df.index = [
+        "Mean",
+        "Std. Dev.",
+        "Minimum",
+        "Maximum",
+        "Median",
+        "IQR",
+    ]
 
     return summary_df
