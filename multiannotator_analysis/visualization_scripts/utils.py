@@ -43,7 +43,7 @@ def read_pairwise_IAA_metrics(config: OmegaConf) -> pd.DataFrame:
     Read the pairwise IAA metrics file into a DataFrame.
     """
     return pd.read_csv(
-        Path(config.new_dataset_metadata_output_dir)
+        Path(config.metrics_output_dir)
         / (config.all_pairwise_IAA_metrics_path),
         header="infer",
         sep=",",
@@ -56,8 +56,7 @@ def read_image_level_metrics(config: OmegaConf) -> pd.DataFrame:
     Read the image-level metrics file into a DataFrame.
     """
     return pd.read_csv(
-        Path(config.new_dataset_metadata_output_dir)
-        / (config.image_level_metrics_path),
+        Path(config.metrics_output_dir) / (config.image_level_metrics_path),
         header="infer",
         sep=",",
         low_memory=False,

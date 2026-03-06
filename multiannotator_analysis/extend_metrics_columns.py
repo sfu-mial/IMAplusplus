@@ -41,7 +41,7 @@ def add_metrics_columns_for_tool_skill(config: OmegaConf) -> None:
     """
     # Read the pairwise IAA metrics file.
     metrics_df = pd.read_csv(
-        Path(config.new_dataset_metadata_output_dir)
+        Path(config.metrics_output_dir)
         / (config.all_pairwise_IAA_metrics_path),
         header="infer",
         sep=",",
@@ -77,7 +77,7 @@ def add_metrics_columns_for_tool_skill(config: OmegaConf) -> None:
 
     # Now, write the extended metrics DataFrame to the same file.
     metrics_df.to_csv(
-        Path(config.new_dataset_metadata_output_dir)
+        Path(config.metrics_output_dir)
         / (config.all_pairwise_IAA_metrics_path),
         index=False,
         sep=",",

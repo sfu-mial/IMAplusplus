@@ -192,7 +192,7 @@ def main() -> None:
 
     # Read the existing pairwise IAA metrics file into a DataFrame.
     pairwise_IAA_metrics_df = pd.read_csv(
-        Path(config.new_dataset_metadata_output_dir)
+        Path(config.metrics_output_dir)
         / (config.all_pairwise_IAA_metrics_path),
         header="infer",
         sep=",",
@@ -224,7 +224,7 @@ def main() -> None:
 
     # Overwrite the pairwise IAA metrics DataFrame to a file.
     pairwise_IAA_metrics_df.to_csv(
-        Path(config.new_dataset_metadata_output_dir)
+        Path(config.metrics_output_dir)
         / (config.all_pairwise_IAA_metrics_path),
         index=False,
         sep=",",

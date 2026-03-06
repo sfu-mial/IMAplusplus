@@ -42,7 +42,7 @@ def compute_image_level_metrics(config: OmegaConf) -> None:
 
     # Read the pairwise IAA metrics file into a DataFrame.
     pairwise_IAA_metrics_df = pd.read_csv(
-        Path(config.new_dataset_metadata_output_dir)
+        Path(config.metrics_output_dir)
         / (config.all_pairwise_IAA_metrics_path),
         header="infer",
         sep=",",
@@ -100,8 +100,7 @@ def compute_image_level_metrics(config: OmegaConf) -> None:
 
     # Save the image-level metrics to a file.
     image_level_agg_metrics.to_csv(
-        Path(config.new_dataset_metadata_output_dir)
-        / (config.image_level_metrics_path),
+        Path(config.metrics_output_dir) / (config.image_level_metrics_path),
         index=False,
         sep=",",
     )

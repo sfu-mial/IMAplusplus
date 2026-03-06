@@ -326,27 +326,27 @@ def main() -> None:
 
     # Save the metrics.
     metrics_df.to_csv(
-        Path(config.new_dataset_metadata_output_dir)
+        Path(config.metrics_output_dir)
         / ("IMAplusplus_multiannotator_subset_IAA_metrics.csv"),
         index=False,
         sep=",",
     )
     logger.info(
         f"Saved {len(metrics_df)} rows of IAA metrics to "
-        f"{config.new_dataset_metadata_output_dir}/"
+        f"{config.metrics_output_dir}/"
         f"IMAplusplus_multiannotator_subset_IAA_metrics.csv."
     )
 
     # Save the summary.
     summary_df.to_csv(
-        Path(config.new_dataset_metadata_output_dir)
+        Path(config.metrics_output_dir)
         / ("IMAplusplus_multiannotator_subset_IAA_metrics_summary.csv"),
         index=False,
         sep=",",
     )
     logger.info(
         f"Saved {len(summary_df)} rows of IAA metrics summary to "
-        f"{config.new_dataset_metadata_output_dir}/"
+        f"{config.metrics_output_dir}/"
         f"IMAplusplus_multiannotator_subset_IAA_metrics_summary.csv."
     )
 

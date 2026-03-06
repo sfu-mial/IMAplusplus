@@ -1,5 +1,6 @@
 # dataset_name: "IMAplusplus"
 new_dataset_metadata_output_dir: "../output/metadata/"
+metrics_output_dir: "../output/metrics/"
 output_seg_masks_metadata_path: "IMAplusplus_seg_metadata.csv"
 output_img_metadata_path: "IMAplusplus_img_metadata.csv"
 
