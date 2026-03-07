@@ -33,7 +33,14 @@ The Zenodo repository contains:
 *   `iaa_metrics_*.csv`: Pre-computed inter-annotator agreement metrics.
 
 ### 2. Download Raw Images
-The underlying RGB skin lesion images are not included in the Zenodo repository. You can use the ISIC API to download images by their ISIC ID using the code in [this GitHub repository](https://github.com/kakumarabhishek/ISIC-API-Image-Downloader).
+The underlying RGB skin lesion images are not included in the Zenodo repository.
+All 14,967 images are available as a dedicated collection in the ISIC Archive:
+
+**[Download from ISIC Archive Collection](https://api.isic-archive.com/collections/482/)**
+
+Alternatively, you can use the ISIC API to download images by their ISIC IDs (available both in the `IMAplusplus_img_metadata.csv` file and as a separate file `ISIC_ids.txt`)
+using the code in [this GitHub repository](https://github.com/kakumarabhishek/ISIC-API-Image-Downloader).
+
 
 ## Repository Structure
 
@@ -66,6 +73,7 @@ IMAplusplus/
 │
 ├── output/                     # Generated outputs
 │   ├── metadata/               # CSV metadata files
+│   ├── metrics/                # CSV metrics files
 │   ├── seg_masks/              # Segmentation masks
 │   └── visualizations/         # Generated plots and figures
 │
@@ -98,13 +106,27 @@ Key dependencies:
 
 ### Dependencies
 
+It is recommended to use a virtual environment (e.g., `venv` or `conda`). Install the required dependencies using the provided `requirements.txt` file to ensure reproducibility:
+
 ```bash
-pip install pandas numpy scikit-image SimpleITK medpy omegaconf loguru tqdm matplotlib upsetplot
+pip install -r requirements.txt
 ```
+
+Key dependencies include:
+- **pandas**: Data manipulation and CSV handling
+- **numpy**: Numerical operations
+- **scikit-image**: Image processing and mask operations
+- **SimpleITK**: STAPLE consensus mask computation
+- **medpy**: Medical image metrics (Dice, Jaccard, Hausdorff distance)
+- **omegaconf**: Configuration management
+- **loguru**: Logging
+- **tqdm**: Progress bars
+- **matplotlib**: Plotting
+- **upsetplot**: UpSet plots for set visualization
 
 ### Quick Start
 
-Run the complete pipeline using the provided script:
+Run the complete pipeline (requires raw data and mapping files) using the provided script:
 
 ```bash
 bash overall_script.sh
@@ -113,8 +135,10 @@ bash overall_script.sh
 **Prerequisites**:
 To run the full dataset creation pipeline, you need:
 1.  **Raw ISIC Images**: Downloaded from ISIC Archive.
-2.  **Raw ISIC Segmentations**: The original pool of segmentations (if not using the pre-packaged Zenodo release).
-3.  **Metadata Mapping**: This repository includes the necessary mapping files in `dataset_creation/original_metadata_files/` to correctly map raw files to the IMA++ schema.
+2.  **Raw ISIC Segmentations**: The original pool of segmentations.
+3.  **Metadata Mapping**: Raw mapping files (not included in this repository due to privacy and licensing constraints) are required to map raw files to the IMA++ schema.
+
+> **Note**: The `dataset_creation/` directory is provided for transparency to document the data processing pipeline described in our paper. Most users should skip the creation step and use the pre-packaged dataset from Zenodo.
 
 Configuration for input/output paths is handled in the `config.yaml` of each module.
 
@@ -137,7 +161,7 @@ Scripts to validate quality and visualize statistics.
 
 ```bash
 cd dataset_analysis/
-python mask_qa.py                        # Quality assurance (check for empty masks)
+python mask_qa.py                        # Quality assurance: empty and full-image masks, disconnected regions, border-touching
 python other_datasets_overlap.py         # Generate overlap visualizations between IMA++ and other datasets (UpSet plot)
 python imaplusplus_annotator_overlap.py  # Generate annotator interaction plots (UpSet plot)
 ```
@@ -191,6 +215,12 @@ All metadata files are saved in `output/metadata/`:
 - `IMAplusplus_seg_metadata.csv`: Complete segmentation metadata
 - `IMAplusplus_img_metadata.csv`: Image metadata
 - `IMAplusplus_multiannotator_subset_seg_metadata.csv`: Multi-annotator subset metadata
+- `IMAplusplus_seg_metadata_qa_results.csv`: Quality assurance results
+
+### Metrics Files
+
+All metrics files are saved in `output/metrics/`:
+
 - `IMAplusplus_multiannotator_subset_IAA_metrics.csv`: Pairwise IAA metrics
 - `IMAplusplus_multiannotator_subset_IAA_metrics_summary.csv`: Summary statistics
 - `IMAplusplus_multiannotator_subset_image_level_metrics.csv`: Per-image aggregated metrics
@@ -204,7 +234,7 @@ Each segmentation mask has the following metadata:
 - `img_filename`: Image filename
 - `seg_filename`: Segmentation mask filename
 - `annotator`: Anonymized annotator ID (`A00`, `A01`, ..., `A15`)
-- `tool`: Segmentation tool (`T1`: manual pointlist, `T2`: unknown, `T3`: autofill)
+- `tool`: Segmentation tool (`T1`: manual pointlist, `T2`: semi-automated flood fill, `T3`: fully automated algorithm)
 - `skill_level`: Annotator skill level (`S1`: expert, `S2`: novice)
 - `mskObjectID`: Original mask object ID
 - `mask_md5`: MD5 hash of the mask file
